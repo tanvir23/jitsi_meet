@@ -25,8 +25,7 @@ class _MeetingState extends State<Meeting> {
   final subjectText = TextEditingController(text: "My Plugin Test Meeting");
   final nameText = TextEditingController(text: "Plugin Test User");
   final emailText = TextEditingController(text: "fake@email.com");
-  final iosAppBarRGBAColor =
-      TextEditingController(text: "#0080FF80"); //transparent blue
+  final iosAppBarRGBAColor = TextEditingController(text: "#0080FF80"); //transparent blue
   bool? isAudioOnly = true;
   bool? isAudioMuted = true;
   bool? isVideoMuted = true;
@@ -103,9 +102,7 @@ class _MeetingState extends State<Meeting> {
           TextField(
             controller: serverText,
             decoration: InputDecoration(
-                border: OutlineInputBorder(),
-                labelText: "Server URL",
-                hintText: "Hint: Leave empty for meet.jitsi.si"),
+                border: OutlineInputBorder(), labelText: "Server URL", hintText: "Hint: Leave empty for meet.jitsi.si"),
           ),
           SizedBox(
             height: 14.0,
@@ -196,9 +193,7 @@ class _MeetingState extends State<Meeting> {
                 "Join Meeting",
                 style: TextStyle(color: Colors.white),
               ),
-              style: ButtonStyle(
-                  backgroundColor:
-                      MaterialStateColor.resolveWith((states) => Colors.blue)),
+              style: ButtonStyle(backgroundColor: MaterialStateColor.resolveWith((states) => Colors.blue)),
             ),
           ),
           SizedBox(
@@ -247,15 +242,18 @@ class _MeetingState extends State<Meeting> {
       }
     }
     // Define meetings options here
-    var options = JitsiMeetingOptions(room: roomText.text)
-      ..serverURL = serverUrl
-      ..subject = subjectText.text
-      ..userDisplayName = nameText.text
-      ..userEmail = emailText.text
+    var options = JitsiMeetingOptions(room: 'tanvir')
+      ..token =
+          'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjb250ZXh0Ijp7InVzZXIiOnsiYXZhdGFyIjoiaHR0cHM6Ly9kZXYudmhnbG9iYWwub3JnL2F2YXRhcnMvZGVmYXVsdC5qcGciLCJuYW1lIjoiVGFudmlydWwgSXNsYW0iLCJlbWFpbCI6InRhbnZpcjgyNjlAZ21haWwuY29tIn19LCJhdWQiOiJubHR2YyIsImlzcyI6InZobWVldGluZyIsInN1YiI6Im1lZXRpbmcudmhnbG9iYWwub3JnIiwiZXhwIjoxNjMzMTQ1NTEzLCJyb29tIjoidGFudmlyIn0.LZLoLXS7qtvWK34ablBf35ABi9P7kw1BRxM7Rx1Y6wo'
+      // ..serverURL = 'https://meet.jit.si'
+      ..serverURL = 'https://meeting.vhglobal.org'
+      ..subject = 'VH Consultation'
+      ..userDisplayName = 'Tanvir'
+      ..userEmail = 'tanvir8269@gmail.com'
       ..iosAppBarRGBAColor = iosAppBarRGBAColor.text
-      ..audioOnly = isAudioOnly
-      ..audioMuted = isAudioMuted
-      ..videoMuted = isVideoMuted
+      ..audioOnly = false
+      ..audioMuted = false
+      ..videoMuted = false
       ..featureFlags.addAll(featureFlags)
       ..webOptions = {
         "roomName": roomText.text,
