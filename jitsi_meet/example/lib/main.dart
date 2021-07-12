@@ -25,8 +25,7 @@ class _MeetingState extends State<Meeting> {
   final subjectText = TextEditingController(text: "My Plugin Test Meeting");
   final nameText = TextEditingController(text: "Plugin Test User");
   final emailText = TextEditingController(text: "fake@email.com");
-  final iosAppBarRGBAColor =
-      TextEditingController(text: "#0080FF80"); //transparent blue
+  final iosAppBarRGBAColor = TextEditingController(text: "#0080FF80"); //transparent blue
   bool? isAudioOnly = true;
   bool? isAudioMuted = true;
   bool? isVideoMuted = true;
@@ -103,9 +102,7 @@ class _MeetingState extends State<Meeting> {
           TextField(
             controller: serverText,
             decoration: InputDecoration(
-                border: OutlineInputBorder(),
-                labelText: "Server URL",
-                hintText: "Hint: Leave empty for meet.jitsi.si"),
+                border: OutlineInputBorder(), labelText: "Server URL", hintText: "Hint: Leave empty for meet.jitsi.si"),
           ),
           SizedBox(
             height: 14.0,
@@ -196,9 +193,7 @@ class _MeetingState extends State<Meeting> {
                 "Join Meeting",
                 style: TextStyle(color: Colors.white),
               ),
-              style: ButtonStyle(
-                  backgroundColor:
-                      MaterialStateColor.resolveWith((states) => Colors.blue)),
+              style: ButtonStyle(backgroundColor: MaterialStateColor.resolveWith((states) => Colors.blue)),
             ),
           ),
           SizedBox(
@@ -235,6 +230,7 @@ class _MeetingState extends State<Meeting> {
     // Full list of feature flags (and defaults) available in the README
     Map<FeatureFlagEnum, bool> featureFlags = {
       FeatureFlagEnum.WELCOME_PAGE_ENABLED: false,
+      FeatureFlagEnum.INVITE_ENABLED: true
     };
     if (!kIsWeb) {
       // Here is an example, disabling features for each platform
@@ -248,14 +244,14 @@ class _MeetingState extends State<Meeting> {
     }
     // Define meetings options here
     var options = JitsiMeetingOptions(room: roomText.text)
-      ..serverURL = serverUrl
+      ..serverURL = 'https://meeting.vhglobal.org'
       ..subject = subjectText.text
       ..userDisplayName = nameText.text
       ..userEmail = emailText.text
       ..iosAppBarRGBAColor = iosAppBarRGBAColor.text
-      ..audioOnly = isAudioOnly
-      ..audioMuted = isAudioMuted
-      ..videoMuted = isVideoMuted
+      ..audioOnly = false
+      ..audioMuted = false
+      ..videoMuted = false
       ..featureFlags.addAll(featureFlags)
       ..webOptions = {
         "roomName": roomText.text,
