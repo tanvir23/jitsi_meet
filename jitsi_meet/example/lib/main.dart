@@ -262,42 +262,45 @@ class _MeetingState extends State<Meeting> {
         "userInfo": {"displayName": nameText.text}
       };
 
-    debugPrint("JitsiMeetingOptions: $options");
+    print("JitsiMeetingOptions: $options");
     await JitsiMeet.joinMeeting(
       options,
       listener: JitsiMeetingListener(
           onConferenceWillJoin: (message) {
-            debugPrint("${options.room} will join with message: $message");
+            print("${options.room} will join with message: $message");
           },
           onConferenceJoined: (message) {
-            debugPrint("${options.room} joined with message: $message");
+            print("${options.room} joined with message: $message");
           },
           onConferenceTerminated: (message) {
-            debugPrint("${options.room} terminated with message: $message");
+            print("${options.room} terminated with message: $message");
+          },
+          onError: (message) {
+            print("error terminated with message: $message");
           },
           genericListeners: [
             JitsiGenericListener(
                 eventName: 'readyToClose',
                 callback: (dynamic message) {
-                  debugPrint("readyToClose callback");
+                  print("readyToClose callback");
                 }),
           ]),
     );
   }
 
   void _onConferenceWillJoin(message) {
-    debugPrint("_onConferenceWillJoin broadcasted with message: $message");
+    print("_onConferenceWillJoin broadcasted with message: $message");
   }
 
   void _onConferenceJoined(message) {
-    debugPrint("_onConferenceJoined broadcasted with message: $message");
+    print("_onConferenceJoined broadcasted with message: $message");
   }
 
   void _onConferenceTerminated(message) {
-    debugPrint("_onConferenceTerminated broadcasted with message: $message");
+    print("_onConferenceTerminated broadcasted with message: $message");
   }
 
   _onError(error) {
-    debugPrint("_onError broadcasted: $error");
+    print("_onError broadcasted: $error");
   }
 }
