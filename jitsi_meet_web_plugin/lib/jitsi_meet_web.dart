@@ -43,7 +43,9 @@ class JitsiMeetPlugin extends JitsiMeetPlatform {
   /// that will automatically be removed when the meeting has ended
   @override
   Future<JitsiMeetingResponse> joinMeeting(JitsiMeetingOptions options,
-      {JitsiMeetingListener? listener, Map<RoomNameConstraintType, RoomNameConstraint>? roomNameConstraints}) async {
+      {JitsiMeetingListener? listener,
+      Map<RoomNameConstraintType, RoomNameConstraint>?
+          roomNameConstraints}) async {
     // encode `options` Map to Json to avoid error
     // in interoperability conversions
     String webOptions = jsonEncode(options.webOptions);
@@ -55,7 +57,10 @@ class JitsiMeetPlugin extends JitsiMeetPlatform {
     if (listener != null) {
       api?.on("videoConferenceJoined", allowInterop((dynamic _message) {
         // Mapping object according with jitsi external api source code
-        Map<String, dynamic> message = {"displayName": _message.displayName, "roomName": _message.roomName};
+        Map<String, dynamic> message = {
+          "displayName": _message.displayName,
+          "roomName": _message.roomName
+        };
         listener.onConferenceJoined?.call(message);
       }));
       api?.on("videoConferenceLeft", allowInterop((dynamic _message) {
@@ -129,7 +134,8 @@ class JitsiMeetPlugin extends JitsiMeetPlatform {
       listeners.add("videoConferenceLeft");
     }
     ;
-    jitsiMeetingListener.genericListeners?.forEach((element) => listeners.add(element.eventName));
+    jitsiMeetingListener.genericListeners
+        ?.forEach((element) => listeners.add(element.eventName));
     api?.removeEventListener(listeners);
   }
 
@@ -142,7 +148,8 @@ class JitsiMeetPlugin extends JitsiMeetPlatform {
   @override
   Widget buildView(List<String> extraJS) {
     // ignore: undefined_prefixed_name
-    ui.platformViewRegistry.registerViewFactory('jitsi-meet-view', (int viewId) {
+    ui.platformViewRegistry.registerViewFactory('jitsi-meet-view',
+        (int viewId) {
       final div = html.DivElement()
         ..id = "jitsi-meet-section"
         ..style.width = '100%'
@@ -165,8 +172,10 @@ class JitsiMeetPlugin extends JitsiMeetPlatform {
     extraJS.forEach((element) {
       RegExp regExp = RegExp(r"<script[^>]*>(.*?)<\/script[^>]*>");
       if (regExp.hasMatch(element)) {
-        final html.NodeValidatorBuilder validator = html.NodeValidatorBuilder.common()
-          ..allowElement('script', attributes: ['type', 'crossorigin', 'integrity', 'src']);
+        final html.NodeValidatorBuilder validator =
+            html.NodeValidatorBuilder.common()
+              ..allowElement('script',
+                  attributes: ['type', 'crossorigin', 'integrity', 'src']);
         debugPrint("ADD script $element");
         html.Element script = html.Element.html(element, validator: validator);
         html.querySelector('head')?.children.add(script);
@@ -179,7 +188,8 @@ class JitsiMeetPlugin extends JitsiMeetPlatform {
 
   // Setup the `JitsiMeetExternalAPI` JS script
   void _setupScripts() {
-    final html.ScriptElement script = html.ScriptElement()..appendText(_clientJs());
+    final html.ScriptElement script = html.ScriptElement()
+      ..appendText(_clientJs());
     html.querySelector('head')?.children.add(script);
   }
 

@@ -1,6 +1,6 @@
 name: bspoke_jitsi_web_plugin
 description: A common plugin for the custom jitsi-meet web and mobile implementation for Virtual Hospital.
-version: 0.0.3
+version: 0.0.4
 homepage: https://bspokeinfotech.com/
 repository: https://github.com/tanvir23/jitsi_meet
 
