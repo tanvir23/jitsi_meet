@@ -230,6 +230,7 @@ class _MeetingState extends State<Meeting> {
     // Full list of feature flags (and defaults) available in the README
     Map<FeatureFlagEnum, bool> featureFlags = {
       FeatureFlagEnum.WELCOME_PAGE_ENABLED: false,
+      FeatureFlagEnum.INVITE_ENABLED: true
     };
     if (!kIsWeb) {
       // Here is an example, disabling features for each platform
@@ -242,14 +243,11 @@ class _MeetingState extends State<Meeting> {
       }
     }
     // Define meetings options here
-    var options = JitsiMeetingOptions(room: 'tanvir')
-      ..token =
-          'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjb250ZXh0Ijp7InVzZXIiOnsiYXZhdGFyIjoiaHR0cHM6Ly9kZXYudmhnbG9iYWwub3JnL2F2YXRhcnMvZGVmYXVsdC5qcGciLCJuYW1lIjoiVGFudmlydWwgSXNsYW0iLCJlbWFpbCI6InRhbnZpcjgyNjlAZ21haWwuY29tIn19LCJhdWQiOiJubHR2YyIsImlzcyI6InZobWVldGluZyIsInN1YiI6Im1lZXRpbmcudmhnbG9iYWwub3JnIiwiZXhwIjoxNjMzMTQ1NTEzLCJyb29tIjoidGFudmlyIn0.LZLoLXS7qtvWK34ablBf35ABi9P7kw1BRxM7Rx1Y6wo'
-      // ..serverURL = 'https://meet.jit.si'
+    var options = JitsiMeetingOptions(room: roomText.text)
       ..serverURL = 'https://meeting.vhglobal.org'
-      ..subject = 'VH Consultation'
-      ..userDisplayName = 'Tanvir'
-      ..userEmail = 'tanvir8269@gmail.com'
+      ..subject = subjectText.text
+      ..userDisplayName = nameText.text
+      ..userEmail = emailText.text
       ..iosAppBarRGBAColor = iosAppBarRGBAColor.text
       ..audioOnly = false
       ..audioMuted = false
@@ -264,42 +262,45 @@ class _MeetingState extends State<Meeting> {
         "userInfo": {"displayName": nameText.text}
       };
 
-    debugPrint("JitsiMeetingOptions: $options");
+    print("JitsiMeetingOptions: $options");
     await JitsiMeet.joinMeeting(
       options,
       listener: JitsiMeetingListener(
           onConferenceWillJoin: (message) {
-            debugPrint("${options.room} will join with message: $message");
+            print("${options.room} will join with message: $message");
           },
           onConferenceJoined: (message) {
-            debugPrint("${options.room} joined with message: $message");
+            print("${options.room} joined with message: $message");
           },
           onConferenceTerminated: (message) {
-            debugPrint("${options.room} terminated with message: $message");
+            print("${options.room} terminated with message: $message");
+          },
+          onError: (message) {
+            print("error terminated with message: $message");
           },
           genericListeners: [
             JitsiGenericListener(
                 eventName: 'readyToClose',
                 callback: (dynamic message) {
-                  debugPrint("readyToClose callback");
+                  print("readyToClose callback");
                 }),
           ]),
     );
   }
 
   void _onConferenceWillJoin(message) {
-    debugPrint("_onConferenceWillJoin broadcasted with message: $message");
+    print("_onConferenceWillJoin broadcasted with message: $message");
   }
 
   void _onConferenceJoined(message) {
-    debugPrint("_onConferenceJoined broadcasted with message: $message");
+    print("_onConferenceJoined broadcasted with message: $message");
   }
 
   void _onConferenceTerminated(message) {
-    debugPrint("_onConferenceTerminated broadcasted with message: $message");
+    print("_onConferenceTerminated broadcasted with message: $message");
   }
 
   _onError(error) {
-    debugPrint("_onError broadcasted: $error");
+    print("_onError broadcasted: $error");
   }
 }
