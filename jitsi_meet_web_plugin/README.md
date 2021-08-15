@@ -2,23 +2,29 @@
 
 A Jitsi Web implementation
 
+This is a fork from `https://github.com/gunschu/jitsi_meet`
+
+DO NOT USE IT UNLESS YOU KNOW WHAT YOU ARE DOING. THIS IS MODIFIED TO USE FOR `vhglobal.org` ONLY.
+
 ## Getting Started
 
-This project implements a Jistis Plugin for WEB using JitsiMeetExternalAPI. You can find more information in https://jitsi.github.io/handbook/docs/dev-guide/dev-guide-iframe.
-
+This project implements a Jistis Plugin for WEB using JitsiMeetExternalAPI. You can find more information in <https://jitsi.github.io/handbook/docs/dev-guide/dev-guide-iframe>.
 
 The plugin allows you to insert a meeting in a flutter web project, this first version has the following characteristics:
+
 * Set the meeting view as a child for a flutter component allowing sizing the meeting section
 * Set configurations according to Jitsi documentation, except `onload` callback
 * Set listeners to meeting events
 * Send commands to meetting
 
 To implement you need to include Jitsi Js library in the index.html of web section
+
 ```javascript
 <script src="https://meet.jit.si/external_api.js" type="application/javascript"></script>
 ```
 
 Example:
+
 ```html
 <body>
   <!-- This script installs service_worker.js to provide PWA functionality to
@@ -37,13 +43,12 @@ Example:
 </html>
 ```
 
-
 See usage example in jitsi_meet plugin
 
 Hosted example  on firebase
 
-https://jitsiflutter.web.app/#/
+<https://jitsiflutter.web.app/#/>
 
-For help getting started with Flutter, view our 
-[online documentation](https://flutter.dev/docs), which offers tutorials, 
+For help getting started with Flutter, view our
+[online documentation](https://flutter.dev/docs), which offers tutorials,
 samples, guidance on mobile development, and a full API reference.
