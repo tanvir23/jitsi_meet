@@ -10,7 +10,7 @@ enum FeatureFlagEnum {
   /// Default: enabled (true) on Android, auto-detected on iOS.
   CALENDAR_ENABLED,
 
-  /// Flag indicating if call integration (CallKit on iOS, 
+  /// Flag indicating if call integration (CallKit on iOS,
   /// ConnectionService on Android)
   /// should be enabled.
   /// Default: enabled (true).
@@ -40,7 +40,7 @@ enum FeatureFlagEnum {
   /// Default: enabled (true).
   MEETING_NAME_ENABLED,
 
-  /// Flag indicating if the meeting password button should be enabled. Note 
+  /// Flag indicating if the meeting password button should be enabled. Note
   /// that this flag just decides on the buttton, if a meeting has a password
   /// set, the password ddialog will still show up.
   /// Default: enabled (true).

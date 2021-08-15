@@ -1,6 +1,6 @@
 name: bspoke_jitsi_platform_interface
-description: A common platform interface for the jitsi meet plugin.
-version: 0.0.2
+description: A common platform interface for the custom jitsi-meet implementation for Virtual Hospital. 
+version: 0.0.3
 homepage: https://bspokeinfotech.com/
 repository: https://github.com/tanvir23/jitsi_meet
 

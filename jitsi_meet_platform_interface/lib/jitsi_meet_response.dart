@@ -1,6 +1,7 @@
 class JitsiMeetingResponse {
   final bool isSuccess;
   final String? message;
+  // ignore: unnecessary_question_mark
   final dynamic? error;
 
   JitsiMeetingResponse({
